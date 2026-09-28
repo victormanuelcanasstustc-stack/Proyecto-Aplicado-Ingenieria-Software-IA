@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Asistente de Estudio</title>
+</head>
+
+<body>
+  <h1>Asistente de Estudio</h1>
+
+  <input
+    id="pregunta"
+    type="text"
+    placeholder="Escribe tu pregunta..."
+  >
+
+  <button onclick="preguntar()">Preguntar</button>
+
+  <pre id="respuesta"></pre>
+
+  <script>
+    async function preguntar() {
+      const pregunta = document.getElementById("pregunta").value;
+      const respuesta = document.getElementById("respuesta");
+
+      respuesta.textContent = "";
+
+      const resultado = await fetch("/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          pregunta: pregunta
+        })
+      });
+
+      const reader = resultado.body.getReader();
+      const decoder = new TextDecoder();
+
+      while (true) {
+        const { value, done } = await reader.read();
+
+        if (done) break;
+
+        respuesta.textContent += decoder.decode(value);
+      }
+    }
+  </script>
+</body>
+</html>
