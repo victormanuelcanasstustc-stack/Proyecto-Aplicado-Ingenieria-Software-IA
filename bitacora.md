@@ -89,3 +89,15 @@ Estas actividades serán realizadas cuando exista acceso autorizado a Claude Cod
 ## Nota final
 
 La bitácora mantiene separados los trabajos realizados manualmente de las actividades que requieren una herramienta externa. Esto permite conservar un registro transparente del proceso de desarrollo.
+
+## Prueba del servidor MCP con MCP Inspector
+
+Se ejecutó el servidor MCP desarrollado en Python y se realizó la
+verificación mediante MCP Inspector.
+
+Inicialmente se presentó un inconveniente porque el comando `uv`
+no estaba instalado en Windows. Se instaló `uv` y posteriormente
+se pudo iniciar el Inspector.
+
+Se verificó la conexión del servidor y se probaron las herramientas,
+el recurso y el prompt definidos en `parte-d-mcp/server.py`.
